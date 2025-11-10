@@ -44,7 +44,7 @@ const BookingConfirmation = ({ flight, userProfile, walletAddress, onComplete, o
 
     try {
       // In a real app, this would be a smart contract address for flight booking
-      const recipientAddress = '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb'
+      const recipientAddress = '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb0'
       
       // Calculate total amount
       const totalAmount = (parseFloat(flight.price) + 0.000001).toFixed(6)
