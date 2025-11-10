@@ -169,11 +169,11 @@ const BookingConfirmation = ({ flight, userProfile, walletAddress, onComplete, o
             </div>
             <div className="payment-row">
               <span>Service Fee</span>
-              <span>0.0001 ETH</span>
+              <span>0.00001 ETH</span>
             </div>
             <div className="payment-row total">
               <span>Total</span>
-              <span>{(parseFloat(flight.price) + 0.0001).toFixed(4)} ETH</span>
+              <span>{(parseFloat(flight.price) + 0.00001).toFixed(5)} ETH</span>
             </div>
 
             <div className="wallet-info">
@@ -204,7 +204,7 @@ const BookingConfirmation = ({ flight, userProfile, walletAddress, onComplete, o
           ) : (
             <>
               <span>💳</span>
-              Confirm & Pay {(parseFloat(flight.price) + 0.0001).toFixed(4)} ETH
+              Confirm & Pay {(parseFloat(flight.price) + 0.00001).toFixed(5)} ETH
             </>
           )}
         </button>
