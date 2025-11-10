@@ -7,7 +7,7 @@ const BookingConfirmation = ({ flight, userProfile, walletAddress, onComplete, o
   const [error, setError] = useState(null)
   const [bookingComplete, setBookingComplete] = useState(false)
   
-  const { data: hash, sendTransaction, isPending } = useSendTransaction()
+  const { data: hash, sendTransaction, isPending, error: txError } = useSendTransaction()
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
     hash,
   })
@@ -22,9 +22,21 @@ const BookingConfirmation = ({ flight, userProfile, walletAddress, onComplete, o
     }
   }, [isSuccess, hash, onComplete])
 
-  const handlePayment = async () => {
+  React.useEffect(() => {
+    if (txError) {
+      console.error('Transaction error:', txError)
+      setError(txError.message || 'Transaction failed')
+    }
+  }, [txError])
+
+  const handlePayment = () => {
     if (!userProfile.email || !userProfile.phone || !userProfile.fullName) {
       setError('Please complete your profile before booking')
+      return
+    }
+
+    if (!walletAddress) {
+      setError('Please connect your wallet first')
       return
     }
 
@@ -34,14 +46,23 @@ const BookingConfirmation = ({ flight, userProfile, walletAddress, onComplete, o
       // In a real app, this would be a smart contract address for flight booking
       const recipientAddress = '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb'
       
+      // Calculate total amount
+      const totalAmount = (parseFloat(flight.price) + 0.000001).toFixed(6)
+      console.log('Initiating transaction:', {
+        to: recipientAddress,
+        amount: totalAmount,
+        walletConnected: !!walletAddress
+      })
+      
+      // Trigger wallet popup
       sendTransaction({
         to: recipientAddress,
-        value: parseEther(flight.price)
+        value: parseEther(totalAmount)
       })
 
     } catch (err) {
       console.error('Payment error:', err)
-      setError('Payment failed. Please try again.')
+      setError(`Payment failed: ${err.message || 'Unknown error'}`)
     }
   }
 
@@ -169,11 +190,11 @@ const BookingConfirmation = ({ flight, userProfile, walletAddress, onComplete, o
             </div>
             <div className="payment-row">
               <span>Service Fee</span>
-              <span>0.00001 ETH</span>
+              <span>0.000001 ETH</span>
             </div>
             <div className="payment-row total">
               <span>Total</span>
-              <span>{(parseFloat(flight.price) + 0.00001).toFixed(5)} ETH</span>
+              <span>{(parseFloat(flight.price) + 0.000001).toFixed(6)} ETH</span>
             </div>
 
             <div className="wallet-info">
@@ -204,7 +225,7 @@ const BookingConfirmation = ({ flight, userProfile, walletAddress, onComplete, o
           ) : (
             <>
               <span>💳</span>
-              Confirm & Pay {(parseFloat(flight.price) + 0.00001).toFixed(5)} ETH
+              Confirm & Pay {(parseFloat(flight.price) + 0.000001).toFixed(6)} ETH
             </>
           )}
         </button>

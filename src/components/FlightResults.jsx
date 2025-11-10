@@ -30,7 +30,7 @@ const FlightResults = ({ searchParams, onSelectFlight, onBack }) => {
       { name: 'Decentralized Air', logo: '🌐', rating: 4.4 }
     ]
 
-    const basePrice = 0.001 + Math.random() * 0.004 // ETH (very small amount in cents)
+    const basePrice = 0.00001 + Math.random() * 0.00002 // ETH (extremely small amount for testing)
 
     return airlines.map((airline, index) => {
       const departTime = `${8 + index * 2}:${['00', '15', '30', '45'][Math.floor(Math.random() * 4)]}`
@@ -51,7 +51,7 @@ const FlightResults = ({ searchParams, onSelectFlight, onBack }) => {
         arriveTime: calculateArrivalTime(departTime, duration),
         duration: `${duration}h ${Math.floor(Math.random() * 60)}m`,
         stops: stops,
-        price: (basePrice * priceMultiplier).toFixed(4),
+        price: (basePrice * priceMultiplier).toFixed(6),
         seats: 12 + Math.floor(Math.random() * 38),
         class: 'Economy'
       }
