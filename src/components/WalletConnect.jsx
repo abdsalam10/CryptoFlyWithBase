@@ -29,54 +29,12 @@ const WalletConnect = ({ onConnect, onDisconnect, walletAddress }) => {
     }
   }, [connectError])
 
-  const handleConnect = async () => {
-    try {
-      setError(null)
-      console.log('Starting wallet connection...')
-      console.log('Available connectors:', connectors)
-      
-      if (!connectors || connectors.length === 0) {
-        const errMsg = 'No wallet connectors available. Please ensure a wallet extension is installed.'
-        console.error(errMsg)
-        setError(errMsg)
-        return
-      }
-      
-      console.log('Connectors found:', connectors.map(c => ({ id: c.id, name: c.name, ready: c.ready })))
-      
-      // Try Farcaster miniapp connector first, then injected wallet
-      const miniAppConn = connectors.find(c => c.id === 'farcasterMiniApp')
-      const injectedConn = connectors.find(c => c.id === 'injected' || c.name?.toLowerCase().includes('injected'))
-      
-      // Prefer miniApp if available and ready, otherwise use injected or first available
-      let connector
-      if (miniAppConn && miniAppConn.ready) {
-        connector = miniAppConn
-      } else if (injectedConn) {
-        connector = injectedConn
-      } else {
-        connector = connectors[0]
-      }
-      
-      console.log('Selected connector:', { id: connector.id, name: connector.name, ready: connector.ready })
-      console.log('Attempting to connect with:', connector.name)
-      
-      await connect({ connector })
-      console.log('Connection successful!')
-      
-    } catch (err) {
-      console.error('Error connecting wallet:', err)
-      let errorMessage = 'Failed to connect wallet. '
-      
-      if (err?.message?.includes('User rejected')) {
-        errorMessage = 'Connection rejected. Please approve the connection in your wallet.'
-      } else if (err?.message?.includes('No provider')) {
-        errorMessage = 'No wallet detected. Please install MetaMask or another wallet extension.'
-      } else if (err?.message) {
-        errorMessage += err.message
-      }
-      
-      setError(errorMessage)
+  const handleConnect = () => {
+    setError(null)
+    if (connectors && connectors[0]) {
+      connect({ connector: connectors[0] })
+    } else {
+      setError('No Farcaster wallet available. Please open inside Base/Warpcast or install a wallet.')
     }
   }
 
