@@ -22,13 +22,13 @@
       "https://your-app.com/screenshot2-1284x2778.png",
       "https://your-app.com/screenshot3-1284x2778.png"
     ],
-    "primaryCategory": "Travel",
+    "primaryCategory": "finance",
     "tags": ["travel", "crypto", "flights", "ethereum", "web3"],
     "heroImageUrl": "https://crypto-fly-with-base.vercel.app/hero-1200x630.png",
     "tagline": "Fly anywhere, pay with crypto",
     "ogTitle": "CryptoFly",
     "ogDescription": "Book flights and pay with crypto",
-    "ogImageUrl": "hhttps://crypto-fly-with-base.vercel.app/og-1200x630.png",
+    "ogImageUrl": "https://crypto-fly-with-base.vercel.app/og-1200x630.png",
     "noindex": false,
     "requiredChains": ["eip155:8453"]
   }
