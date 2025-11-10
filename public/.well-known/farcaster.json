@@ -1,0 +1,35 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "baseBuilder": {
+    "ownerAddress": "0x"
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "CryptoFly",
+    "homeUrl": "https://your-app.com",
+    "iconUrl": "https://your-app.com/icon-1024.png",
+    "splashImageUrl": "https://your-app.com/splash-200x200.png",
+    "splashBackgroundColor": "#1a1a2e",
+    "webhookUrl": "https://your-app.com/api/webhook",
+    "subtitle": "Book flights with crypto",
+    "description": "Book flights worldwide and pay with cryptocurrency. Connect your wallet and manage your travel profile.",
+    "screenshotUrls": [
+      "https://your-app.com/screenshot1-1284x2778.png",
+      "https://your-app.com/screenshot2-1284x2778.png",
+      "https://your-app.com/screenshot3-1284x2778.png"
+    ],
+    "primaryCategory": "finance",
+    "tags": ["travel", "crypto", "flights", "ethereum", "web3"],
+    "heroImageUrl": "https://your-app.com/hero-1200x630.png",
+    "tagline": "Fly anywhere, pay with crypto",
+    "ogTitle": "CryptoFly",
+    "ogDescription": "Book flights and pay with crypto",
+    "ogImageUrl": "https://your-app.com/og-1200x630.png",
+    "noindex": false,
+    "requiredChains": ["eip155:8453"]
+  }
+}

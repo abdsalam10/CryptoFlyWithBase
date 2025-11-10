@@ -1,0 +1,76 @@
+# CryptoFly Deployment Guide
+
+## Pre-Deployment Checklist
+
+### 1. Create Required Images
+See `IMAGE_REQUIREMENTS.txt` for all required image specifications.
+
+### 2. Update Domain in Configuration Files
+
+#### Update `/public/.well-known/farcaster.json`:
+Replace all instances of `https://your-app.com` with your actual deployed domain.
+
+#### Update `/index.html`:
+Replace the domain in the `fc:miniapp` meta tag.
+
+### 3. Complete Account Association
+
+1. Deploy your app to your domain (e.g., Vercel, Netlify)
+2. Ensure `farcaster.json` is accessible at `https://yourdomain.com/.well-known/farcaster.json`
+3. Visit [Base Build Account Association Tool](https://www.base.dev/preview)
+4. Enter your domain and click "Submit"
+5. Click "Verify" and follow instructions to sign with your Farcaster account
+6. Copy the generated `accountAssociation` fields
+7. Update the `accountAssociation` section in `farcaster.json`
+
+## Deployment Steps
+
+### Deploy to Vercel (Recommended)
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Login to Vercel
+vercel login
+
+# Deploy
+vercel
+
+# For production
+vercel --prod
+```
+
+### Deploy to Netlify
+
+```bash
+# Build the app
+npm run build
+
+# Deploy the dist folder to Netlify
+# Or connect your GitHub repo to Netlify for auto-deployment
+```
+
+## Testing Your Miniapp
+
+1. Visit [Base Build Preview Tool](https://www.base.dev/preview)
+2. Enter your app URL
+3. Verify:
+   - Embeds display correctly
+   - Launch button works
+   - Account association is valid
+   - All metadata is correct
+
+## Publishing
+
+1. Create a post in the Base app (Warpcast) with your miniapp URL
+2. Your miniapp will be discoverable in the Base ecosystem
+
+## Important Notes
+
+- Icon must be 1024x1024px PNG with no transparency
+- Splash image must be 200x200px
+- Embed image must be 3:2 aspect ratio
+- Screenshots must be portrait 1284x2778px
+- All image URLs must be publicly accessible
+- Domain in manifest must exactly match hosting domain

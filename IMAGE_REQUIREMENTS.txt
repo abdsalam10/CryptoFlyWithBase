@@ -1,0 +1,45 @@
+# CryptoFly Image Assets Requirements
+
+## For deployment, you'll need to create the following images:
+
+### Icon (Required)
+- **File**: `icon.png`
+- **Size**: 1024x1024px
+- **Format**: PNG, no alpha channel
+- **Usage**: App icon in stores and miniapp listings
+
+### Splash Screen (Required)
+- **File**: `splash-200x200.png`
+- **Size**: 200x200px
+- **Format**: PNG
+- **Usage**: Loading screen image
+
+### Embed Image (Required)
+- **File**: `embed-1200x800.png`
+- **Size**: 1200x800px (3:2 aspect ratio)
+- **Format**: PNG/JPG
+- **Usage**: Social feed embeds when miniapp is shared
+
+### Screenshots (Optional but Recommended)
+- **Files**: `screenshot1-1284x2778.png`, `screenshot2-1284x2778.png`, `screenshot3-1284x2778.png`
+- **Size**: 1284x2778px (portrait)
+- **Format**: PNG
+- **Max**: 3 screenshots
+- **Usage**: App store listings
+
+### Hero Image (Optional)
+- **File**: `hero-1200x630.png`
+- **Size**: 1200x630px (1.91:1 aspect ratio)
+- **Format**: PNG
+- **Usage**: Promotional displays
+
+### Open Graph Image (Optional)
+- **File**: `og-1200x630.png`
+- **Size**: 1200x630px (1.91:1 aspect ratio)
+- **Format**: PNG
+- **Usage**: Social media sharing
+
+## Background Color
+- Splash background: `#1a1a2e` (dark blue-black)
+
+Place all images in the `/public` folder and update URLs in `farcaster.json` with your deployed domain.
